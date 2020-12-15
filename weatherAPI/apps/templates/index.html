@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="utf-8">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/c06.css" />
+  <title>Weather Platform</title>
+</head>
+<body>
+
+    <form action="" method="post">
+        {% csrf_token %}
+         {{ form }}
+        <input type="submit" name="action_one" value="OK" />
+    </form>
+    {% if messages %}
+    <ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if weather_info %}
+     <table>
+        <thead>
+            <tr class="first-table-row">
+            <th>City</th>
+            <th>Temperature</th>
+            <th>Max temp.</th>
+            <th>Min temp.</th>
+            <th>Humidity</th>
+            <th>Description</th>
+        </thead>
+
+        <tbody>
+
+        {% for i in weather_info %}
+            <tr>
+                <td>{{ i.city }}</td>
+                <td>{{ i.temp }}</td>
+                <td>{{ i.maxtp }}</td>
+                <td>{{ i.mintp }}</td>
+                <td>{{ i.humidity }}</td>
+                <td>{{ i.describ }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+    {% endif %}
+
+    <div>
+        <br/>
+        <br/>
+        <button id='btn_show' onclick="show_top()">Show History</button>
+        <div id="show" style="display:none">
+            <h4>History</h4>
+            {% if five_session %}
+            <ul>
+                {% for i in five_session %}
+                <li id='session'>City: {{ i }} </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+
+
+</body>
+</html>
+<script>
+function show_top() {
+  var x = document.getElementById("show");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
