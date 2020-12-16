@@ -1,6 +1,5 @@
 # weatherAPI
-WeatherAPI is a platform for looking for weather data.
-Urmart-test is for developers testing the orderplatform. 
+WeatherAPI is a simple website for looking for weather data. 
 
 ## Technologies
 Project is created with:
